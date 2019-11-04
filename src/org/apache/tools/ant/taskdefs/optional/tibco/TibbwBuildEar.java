@@ -116,8 +116,8 @@ public class TibbwBuildEar extends AbstractTibbwTask {
         String earPath = this.destdir + File.separator
             + subStringBeforeFirst(currentFile.getName(),".") + ".ear";
 
-        String command = this.bindir.getPath() + File.separator + "buildear -s -ear \"" + this.archiveProjectPath + "\" -o " + earPath
-            + " -p " + projectDir.getPath() + " -x ";
+        String command = this.bindir.getPath() + File.separator + "buildear -s -ear \"" + this.archiveProjectPath + "\" -o " + "\"" + earPath  + "\"" 
+            + " -p " + "\"" +  projectDir.getPath() + "\"" + " -x ";
 
         return command;
     }
