@@ -19,6 +19,7 @@ public class TibbwBuildEar extends AbstractTibbwTask {
     /** the directory where the tibco businessworks ear are built * */
     protected File destdir;
     protected File projectDir;
+    protected String aliasesPath;
     protected String archiveProjectPath;
 
     //~ Constructors ===============================================================================================================
@@ -32,8 +33,8 @@ public class TibbwBuildEar extends AbstractTibbwTask {
     public TibbwBuildEar() {
         super(".archive");
         this.destdir = null;
-
         this.projectDir = null;
+        this.aliasesPath = null;
         this.archiveProjectPath = null;
 
     }
@@ -90,6 +91,20 @@ public class TibbwBuildEar extends AbstractTibbwTask {
     }
 
     /**
+     * @param aliasesPath The projectDir to set.
+     */
+    public void setAliasesDir(String aliasesPath) {
+        this.aliasesPath = aliasesPath;
+    }
+
+    /**
+     * @return Returns the projectDir.
+     */
+    public String getAliasesPath() {
+        return aliasesPath;
+    }
+
+    /**
      * @param srcdir
      *            The srcdir to set.
      */
@@ -117,6 +132,7 @@ public class TibbwBuildEar extends AbstractTibbwTask {
             + subStringBeforeFirst(currentFile.getName(),".") + ".ear";
 
         String command = this.bindir.getPath() + File.separator + "buildear -s -ear \"" + this.archiveProjectPath + "\" -o " + "\"" + earPath  + "\"" 
+            + " -a " + "\"" + this.aliasesPath + "\""
             + " -p " + "\"" +  projectDir.getPath() + "\"" + " -x ";
 
         return command;
